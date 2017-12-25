@@ -7,6 +7,14 @@
   <title>한강.믈</title>
 </head>
 <body>
-  <p>현재 한강물 온도는 섭씨 <b>2.2</b>도 입니다.</p>
+  <p>현재 한강물 온도는 섭씨 <b id="temp"></b>도 입니다.</p>
+  <script>
+    (async function() {
+      const res = await fetch('https://api.github.com/gists/e34194915ee59da3e95c481f586ddec6')
+      if (!res.ok) return
+      const { files: { 'hangangml.txt': { content } } } = await res.json()
+      document.getElementById('temp').innerText = content
+    })()
+  </script>
 </body>
 </html>
